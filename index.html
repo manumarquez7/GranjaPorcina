@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carne de Cerdo Fresca en Río Grande | Granja Porcina Tierra del Fuego</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo-nuevo.jpeg" type="image/jpeg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Granja Porcina - Carne fresca de cerdo en Río Grande">
+    <meta property="og:description"
+        content="Carne de cerdo fresca de producción propia en Río Grande, Tierra del Fuego. Dos sucursales con excelente atención y cortes del día.">
+    <meta property="og:image" content="01_parrilla.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- Schema SEO Local -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Granja Porcina",
+        "image": "logo-nuevo.jpeg",
+        "description": "Carne de cerdo fresca de producción propia en Río Grande. Dos sucursales con los mejores cortes del día. Abastecimiento a familias y restaurantes.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carlos Pellegrini 312",
+            "addressLocality": "Río Grande",
+            "addressRegion": "Tierra del Fuego",
+            "addressCountry": "AR"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "10:00",
+                "closes": "13:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "15:30",
+                "closes": "20:30"
+            }
+        ],
+        "servesCuisine": "Carnicería"
+    }
+    </script>
+
+    <!-- Schema FAQPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "¿La carne es de producción propia?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Sí, los animales se crían en nuestra propia granja y controlamos todo el proceso. La faena se realiza en un establecimiento habilitado, con los controles sanitarios correspondientes." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Dónde puedo comprar carne de cerdo en Río Grande?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Podés visitarnos en cualquiera de nuestras dos sucursales en Río Grande: Carlos Pellegrini 312 o El Alambrador 50." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Cómo garantizan la frescura?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Trabajamos bajo estricta normativa municipal. Nuestra carne es fresca y del día, mantenida bajo una cadena de frío constante y sin envasar." }
+            },
+            {
+                "@type": "Question",
+                "name": "¿Abastecen a restaurantes y hoteles?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Sí, además de nuestras sucursales en Río Grande, abastecemos a restaurantes y hoteles de Ushuaia, garantizando cortes frescos y calidad constante." }
+            }
+        ]
+    }
+    </script>
+
+    <meta name="description"
+        content="Carne de cerdo fresca de producción propia en Río Grande. Dos sucursales, venta al público y restaurantes. Estricto control sanitario y cortes del día.">
+    <meta name="theme-color" content="#8b0000">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: "#e8621a",
+                            red: "#7a0000",
+                            dark: "#111111",
+                            light: "#ffffff"
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Oswald', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.93);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 92%;
+            max-height: 88vh;
+            border-radius: 10px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transform: scale(0.96);
+            transition: transform 0.25s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        html {
+            scroll-padding-top: 76px;
+        }
+
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.97) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        /* Producto cards */
+        .product-card-img {
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-card-img {
+            transform: scale(1.04);
+        }
+
+        /* Galería hover */
+        .gallery-cell img {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-cell:hover img {
+            transform: scale(1.04);
+        }
+
+        .gallery-cell .gallery-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-cell:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Divider decorativo */
+        .section-divider {
+            width: 44px;
+            height: 3px;
+            background: #e8621a;
+            border-radius: 2px;
+            margin: 14px 0 22px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-neutral-800 antialiased selection:bg-brand-orange selection:text-white overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav id="navbar"
+        class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md shadow-sm border-b border-neutral-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="logo-nuevo.jpeg" alt="Logo Granja Porcina"
+                    class="h-14 w-auto object-contain rounded transition-transform group-hover:scale-105">
+            </a>
+
+            <!-- Enlaces de Escritorio -->
+            <div class="hidden md:flex gap-8 items-center font-medium">
+                <a href="#productos" class="hover:text-brand-orange transition-colors">Cortes</a>
+                <a href="#historia" class="hover:text-brand-orange transition-colors">Nosotros</a>
+                <a href="#galeria" class="hover:text-brand-orange transition-colors">Galería</a>
+                <a href="#sucursales"
+                    class="bg-brand-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-600 transition-colors shadow-md flex items-center gap-2 font-bold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Visitá nuestras sucursales
+                </a>
+            </div>
+
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" class="md:hidden text-neutral-800 hover:text-brand-orange focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu"
+            class="md:hidden bg-white/95 backdrop-blur-md border-t border-neutral-100 absolute w-full shadow-xl transition-all duration-300 ease-in-out opacity-0 -translate-y-2 pointer-events-none">
+            <div class="flex flex-col px-6 py-4 space-y-4 text-center font-medium">
+                <a href="#productos" class="mobile-link text-neutral-800 hover:text-brand-orange">Cortes</a>
+                <a href="#historia" class="mobile-link text-neutral-800 hover:text-brand-orange">Nosotros</a>
+                <a href="#galeria" class="mobile-link text-neutral-800 hover:text-brand-orange">Galería</a>
+                <a href="#sucursales"
+                    class="mobile-link inline-block bg-brand-orange text-white px-6 py-2 rounded-full font-bold mx-auto w-auto">📍
+                    Visitá nuestras sucursales</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-end pb-14 md:pb-20 pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="01_parrilla.jpg"
+                alt="Parrilla con costillas, chorizos y productos de cerdo frescos — Granja Porcina Río Grande"
+                class="w-full h-full object-cover" style="object-position: center 38%;" loading="eager">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/10"></div>
+            <!-- Overlay localizado lado izquierdo para contraste del texto -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-5 md:px-8 w-full">
+            <div class="max-w-2xl fade-up">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/10 border border-white/25 text-white/90 text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-orange inline-block"></span>
+                    Producción Propia · Río Grande, TDF
+                </div>
+
+                <h1
+                    class="text-4xl sm:text-5xl md:text-7xl font-heading font-bold text-white mb-5 tracking-tight uppercase leading-none drop-shadow-lg">
+                    Carne de Cerdo<br>
+                    <span class="text-brand-orange">del Campo<br>al Mostrador.</span>
+                </h1>
+
+                <p class="text-base md:text-lg text-white/90 mb-8 max-w-lg leading-relaxed drop-shadow-md">
+                    Criamos nuestros animales y vendemos directamente en sucursal —
+                    siempre fresco, con máxima higiene y cortes del día.
+                </p>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="#productos"
+                        class="bg-brand-orange text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-orange-700 transition-colors duration-200 shadow-lg inline-flex items-center gap-2">
+                        Ver cortes disponibles
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#sucursales"
+                        class="bg-white/10 border border-white/30 text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm inline-flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Nuestros locales
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/55 mt-8 font-medium">
+                    <span>✔ 100% producción propia</span>
+                    <span>✔ Carne fresca del día</span>
+                    <span>✔ 2 sucursales en Río Grande</span>
+                    <span>✔ Abastecemos restaurantes y hoteles</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franja de pilares numéricos -->
+    <section class="bg-neutral-900 border-b border-neutral-800">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-neutral-800">
+                <div class="py-7 px-6 text-center fade-up">
+                    <p class="text-brand-orange text-2xl font-heading font-bold mb-1">100%</p>
+                    <p class="text-neutral-400 text-xs uppercase tracking-wider font-semibold">Producción propia</p>
+                </div>
+                <div class="py-7 px-6 text-center fade-up" style="transition-delay:80ms">
+                    <p class="text-brand-orange text-2xl font-heading font-bold mb-1">120+</p>
+                    <p class="text-neutral-400 text-xs uppercase tracking-wider font-semibold">Madres reproductoras</p>
+                </div>
+                <div class="py-7 px-6 text-center fade-up" style="transition-delay:160ms">
+                    <p class="text-brand-orange text-2xl font-heading font-bold mb-1">2</p>
+                    <p class="text-neutral-400 text-xs uppercase tracking-wider font-semibold">Sucursales en Río Grande
+                    </p>
+                </div>
+                <div class="py-7 px-6 text-center fade-up" style="transition-delay:240ms">
+                    <p class="text-brand-orange text-2xl font-heading font-bold mb-1">Fresco</p>
+                    <p class="text-neutral-400 text-xs uppercase tracking-wider font-semibold">Cadena de frío
+                        garantizada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cortes Destacados — con fotos reales -->
+    <section id="productos" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+            <div class="mb-14 fade-up">
+                <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Nuestros productos</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900">Cortes que hablan<br>por sí
+                    solos.</h2>
+                <div class="section-divider"></div>
+                <p class="text-neutral-500 text-lg max-w-xl leading-relaxed">Seleccionamos los mejores cortes del día y
+                    los
+                    presentamos frescos en mostrador. Sin envasar, sin intermediarios.</p>
+            </div>
+
+            <!-- Grid de productos con foto real -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up">
+                    <div class="overflow-hidden h-64 md:h-72">
+                        <img src="04_costillas.jpg" alt="Costillar de cerdo — corte destacado para parrilla"
+                            class="product-card-img w-full h-full object-cover" style="object-position: center 25%;"
+                            loading="lazy">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5">
+                        <span class="text-white/55 text-xs font-bold uppercase tracking-widest mb-1">Parrilla</span>
+                        <h3 class="text-white font-heading font-bold text-2xl leading-tight">Costillar</h3>
+                        <p class="text-white/65 text-sm mt-1">Jugoso, con hueso. Ideal para parrilla.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
+                </div>
+
+                <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
+                    style="transition-delay:80ms">
+                    <div class="overflow-hidden h-64 md:h-72">
+                        <img src="05_chorizos.jpg"
+                            alt="Chorizos artesanales a la parrilla — elaboración propia Granja Porcina"
+                            class="product-card-img w-full h-full object-cover object-center" loading="lazy">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5">
+                        <span class="text-white/55 text-xs font-bold uppercase tracking-widest mb-1">Elaboración
+                            propia</span>
+                        <h3 class="text-white font-heading font-bold text-2xl leading-tight">Chorizos</h3>
+                        <p class="text-white/65 text-sm mt-1">Artesanales, con receta propia.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
+                </div>
+
+                <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
+                    style="transition-delay:160ms">
+                    <div class="overflow-hidden h-64 md:h-72">
+                        <img src="02_costillas_tabla.jpg"
+                            alt="Costillas de cerdo sobre tabla — corte premium Granja Porcina"
+                            class="product-card-img w-full h-full object-cover" style="object-position: center 30%;"
+                            loading="lazy">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5">
+                        <span class="text-white/55 text-xs font-bold uppercase tracking-widest mb-1">Corte
+                            premium</span>
+                        <h3 class="text-white font-heading font-bold text-2xl leading-tight">Bondiola & Lomo</h3>
+                        <p class="text-white/65 text-sm mt-1">Tiernos, del campo directo al mostrador.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
+                </div>
+
+                <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
+                    style="transition-delay:240ms">
+                    <div class="overflow-hidden h-64 md:h-72">
+                        <img src="07_plato.jpg" alt="Plato con cortes de cerdo — productos Granja Porcina"
+                            class="product-card-img w-full h-full object-cover object-center" loading="lazy">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5">
+                        <span class="text-white/55 text-xs font-bold uppercase tracking-widest mb-1">Platos
+                            preparados</span>
+                        <h3 class="text-white font-heading font-bold text-2xl leading-tight">Platos & Elaborados</h3>
+                        <p class="text-white/65 text-sm mt-1">Milanesas, ribs, picada y más.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo completo de cortes -->
+    <section id="lista-precios" class="py-16 md:py-24 bg-neutral-50 border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <div class="mb-10 fade-up">
+                <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-2">Catálogo completo</p>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900">Todos nuestros cortes.</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="bg-white rounded-2xl p-6 border border-neutral-200">
+                    <h3 class="font-heading font-bold text-base text-neutral-900 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange inline-block"></span> Cortes clásicos
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="py-1.5 border-b border-neutral-100">Americano</li>
+                        <li class="py-1.5 border-b border-neutral-100">Bola de Lomo</li>
+                        <li class="py-1.5 border-b border-neutral-100">Bondiola</li>
+                        <li class="py-1.5 border-b border-neutral-100">Cabeza</li>
+                        <li class="py-1.5 border-b border-neutral-100">Costeleta</li>
+                        <li class="py-1.5">Cuadrada</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-neutral-200">
+                    <h3 class="font-heading font-bold text-base text-neutral-900 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange inline-block"></span> Cortes especiales
+                    </h3>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                        <li class="py-1.5 border-b border-neutral-100">Lomo</li>
+                        <li class="py-1.5 border-b border-neutral-100">Matambrito</li>
+                        <li class="py-1.5 border-b border-neutral-100">Milanesas</li>
+                        <li class="py-1.5 border-b border-neutral-100">Nalga / T. de Nalga</li>
+                        <li class="py-1.5 border-b border-neutral-100">Paleta</li>
+                        <li class="py-1.5">Pechito / Vacío</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-neutral-200">
+                    <h3 class="font-heading font-bold text-base text-neutral-900 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange inline-block"></span> Elaborados & más
+                    </h3>
+                    <ul class="space-y-1 text-sm text-neutral-600">
+                        <li class="py-1.5 border-b border-neutral-100">Chorizo Especial</li>
+                        <li class="py-1.5 border-b border-neutral-100">Chorizo Común</li>
+                        <li class="py-1.5 border-b border-neutral-100">Salchicha</li>
+                        <li class="py-1.5 border-b border-neutral-100">Hamburguesas</li>
+                        <li class="py-1.5 border-b border-neutral-100">Ribs</li>
+                        <li class="py-1.5">Picada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nosotros / Historia + Producción Propia (sección narrativa unificada) -->
+    <section id="historia" class="bg-neutral-950 overflow-hidden">
+
+        <!-- Bloque texto + foto elaboración -->
+        <div class="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                <div class="fade-up order-2 lg:order-1">
+                    <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-4">Nuestra historia</p>
+                    <h2 class="text-5xl md:text-6xl font-heading font-bold text-white mb-8 leading-tight">
+                        Empezamos con<br>tres cerditas<br>y mucho trabajo.
+                    </h2>
+                    <div class="space-y-6 text-neutral-300 text-lg md:text-xl leading-relaxed">
+                        <p>Todo comenzó de manera humilde: recibimos nuestras
+                            <strong class="text-neutral-200">tres primeras cerditas a cambio de leña.</strong>
+                            En ese momento, no imaginábamos hasta dónde llegaríamos.
+                        </p>
+                        <p>Apostamos por un enfoque familiar y la
+                            <strong class="text-neutral-200">producción 100% propia.</strong>
+                            Con mucho esfuerzo y reinversión, crecimos hasta convertirnos en una granja modelo
+                            con más de 120 madres reproductoras.
+                        </p>
+                        <p>Hoy abastecemos a familias y restaurantes de Río Grande
+                            con carne fresca directamente del campo al mostrador.
+                        </p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-3 gap-4">
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                            <p class="text-brand-orange font-heading font-bold text-3xl">120+</p>
+                            <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1 font-semibold">Madres</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                            <p class="text-brand-orange font-heading font-bold text-3xl">100%</p>
+                            <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1 font-semibold">Propio</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                            <p class="text-brand-orange font-heading font-bold text-3xl">2</p>
+                            <p class="text-neutral-500 text-xs uppercase tracking-wider mt-1 font-semibold">Sucursales
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto elaboración chorizos -->
+                <div class="fade-up order-1 lg:order-2" style="transition-delay:150ms">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="06_elaboracion_chorizos.jpg"
+                            alt="Elaboración artesanal de chorizos en Granja Porcina — producción propia Río Grande"
+                            class="w-full h-[360px] md:h-[480px] object-cover object-center" loading="lazy">
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
+                            <span
+                                class="inline-flex items-center gap-2 bg-brand-orange/90 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                                Elaboración artesanal
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Full-width banner con costillas tabla y texto -->
+        <div class="relative fade-up">
+            <img src="02_costillas_tabla.jpg"
+                alt="Costillas de cerdo sobre tabla — calidad Granja Porcina, producción propia"
+                class="w-full h-72 md:h-96 object-cover" style="object-position: center 15%;" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent flex items-center">
+                <div class="max-w-7xl mx-auto px-5 md:px-8 w-full">
+                    <div class="max-w-xl">
+                        <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Del campo al
+                            mostrador</p>
+                        <h3
+                            class="text-white drop-shadow-md font-heading font-bold text-4xl md:text-5xl mb-5 leading-tight">
+                            Producimos lo que vendemos.<br>Sin intermediarios.
+                        </h3>
+                        <p class="text-white drop-shadow text-lg md:text-xl leading-relaxed">
+                            Cada corte que encontrás en nuestras sucursales nace en nuestra propia granja.
+                            Controlamos todo el proceso y garantizamos la calidad en cada etapa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pilares de calidad -->
+        <div class="max-w-7xl mx-auto px-5 md:px-8 py-14">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5">
+                    <div class="text-brand-orange text-xl mb-3">❄️</div>
+                    <h4 class="text-white font-semibold text-sm mb-1">Cadena de frío</h4>
+                    <p class="text-neutral-500 text-sm leading-relaxed">Venta fresca sin envasado</p>
+                </div>
+                <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5" style="transition-delay:80ms">
+                    <div class="text-brand-orange text-xl mb-3">🧼</div>
+                    <h4 class="text-white font-semibold text-sm mb-1">Higiene total</h4>
+                    <p class="text-neutral-500 text-sm leading-relaxed">Protocolos y normativa municipal</p>
+                </div>
+                <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5" style="transition-delay:160ms">
+                    <div class="text-brand-orange text-xl mb-3">🏥</div>
+                    <h4 class="text-white font-semibold text-sm mb-1">Control sanitario</h4>
+                    <p class="text-neutral-500 text-sm leading-relaxed">Seguimiento y controles sanitarios durante el
+                        proceso.</p>
+                </div>
+                <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5" style="transition-delay:240ms">
+                    <div class="text-brand-orange text-xl mb-3">🏭</div>
+                    <h4 class="text-white font-semibold text-sm mb-1">Faena habilitada</h4>
+                    <p class="text-neutral-500 text-sm leading-relaxed">Faena en establecimiento habilitado</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <!-- Galería editorial -->
+    <section id="galeria" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <div class="mb-12 fade-up">
+                <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Calidad visible</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900">Así<br>trabajamos.</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 fade-up" style="transition-delay:100ms">
+                <!-- Mostrador 1 -->
+                <div class="gallery-cell relative col-span-2 rounded-xl overflow-hidden cursor-pointer"
+                    style="height:300px">
+                    <img src="interior-counter-2.webp"
+                        alt="Mostrador de Granja Porcina con cortes frescos de cerdo del día — Río Grande"
+                        class="w-full h-full object-cover object-center" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-brand-red/60 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Mostrador 2 -->
+                <div class="gallery-cell relative rounded-xl overflow-hidden cursor-pointer" style="height:300px">
+                    <img src="interior-counter-1.webp" alt="Trabajo en mostrador Granja Porcina"
+                        class="w-full h-full object-cover object-center" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-brand-red/60 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Mostrador 3 -->
+                <div class="gallery-cell relative rounded-xl overflow-hidden cursor-pointer" style="height:240px">
+                    <img src="product-closeup.webp" alt="Atención en sucursal Granja Porcina"
+                        class="w-full h-full object-cover object-center" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-brand-red/60 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Productos detalle -->
+                <div class="gallery-cell relative col-span-2 md:col-span-2 rounded-xl overflow-hidden cursor-pointer"
+                    style="height:240px">
+                    <img src="product-closeup.webp" alt="Cortes frescos en exhibición Granja Porcina"
+                        class="w-full h-full object-cover object-center" loading="lazy">
+                    <div class="gallery-overlay absolute inset-0 bg-brand-red/60 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Sucursales -->
+    <section id="sucursales" class="py-16 md:py-24 bg-neutral-50 border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+            <div class="mb-14 fade-up">
+                <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Dónde encontrarnos</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900">Nuestros locales<br>en Río
+                    Grande.</h2>
+                <div class="section-divider"></div>
+                <p class="text-neutral-500 text-lg max-w-lg leading-relaxed">Dos puntos de venta en la ciudad. Mismo
+                    producto,
+                    misma calidad, siempre fresco.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- Sucursal 1: Pellegrini 312 -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up hover:shadow-md transition-shadow duration-300">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="09_local_pellegrini_312.jpg"
+                            alt="Sucursal Granja Porcina en Carlos Pellegrini 312, Río Grande, Tierra del Fuego"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            style="object-position: center center;" loading="lazy">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-orange text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
+                            Local 1
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-heading font-bold text-2xl text-neutral-900 mb-4">Sucursal Pellegrini</h3>
+                        <div class="space-y-3 text-sm text-neutral-600">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span><strong class="text-neutral-800">Carlos Pellegrini 312</strong><br>Río Grande,
+                                    Tierra del Fuego</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span><strong class="text-neutral-800">Lun – Sáb</strong>&nbsp;&nbsp;10:00 – 13:00 /
+                                    15:30 – 20:30</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 rounded-xl overflow-hidden border border-neutral-100">
+                            <iframe title="Mapa Sucursal Pellegrini" class="rounded-xl"
+                                src="https://www.google.com/maps?q=Carlos+Pellegrini+312,+Río+Grande,+Tierra+del+Fuego,+Argentina&output=embed"
+                                width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sucursal 2: El Alambrador 50 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up hover:shadow-md transition-shadow duration-300"
+                    style="transition-delay:150ms">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="10_local_alambrador_50.jpg"
+                            alt="Sucursal Granja Porcina en El Alambrador 50, Río Grande, Tierra del Fuego"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            style="object-position: center center;" loading="lazy">
+                        <div
+                            class="absolute top-4 left-4 bg-brand-red text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
+                            Local 2
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-heading font-bold text-2xl text-neutral-900 mb-4">Sucursal Alambrador</h3>
+                        <div class="space-y-3 text-sm text-neutral-600">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span><strong class="text-neutral-800">El Alambrador 50</strong><br>Río Grande, Tierra
+                                    del Fuego</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <svg class="w-4 h-4 text-brand-orange mt-0.5 flex-shrink-0" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span><strong class="text-neutral-800">Lun – Sáb</strong>&nbsp;&nbsp;10:00 – 13:00 /
+                                    16:00 – 21:00</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 rounded-xl overflow-hidden border border-neutral-100">
+                            <iframe title="Mapa Sucursal Alambrador" class="rounded-xl"
+                                src="https://www.google.com/maps?q=El+Alambrador+50,+Río+Grande,+Tierra+del+Fuego,+Argentina&output=embed"
+                                width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 md:py-24 bg-white border-t border-neutral-100">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="mb-10 fade-up">
+                <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Preguntas frecuentes</p>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-neutral-900">Lo que nos preguntan.</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="space-y-4">
+                <!-- Accordion 1 -->
+                <details
+                    class="group bg-white rounded-2xl border border-neutral-100 shadow-[0_0_15px_rgba(0,0,0,0.02)] fade-up transition-colors open:border-brand-orange/30 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-heading font-bold text-xl p-7 text-neutral-900 focus:outline-none select-none list-none [&::-webkit-details-marker]:hidden">
+                        ¿La carne es de producción propia?
+                        <span class="text-brand-orange transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="px-7 pb-7 text-neutral-600 leading-relaxed -mt-2">
+                        Sí, los animales se crían en nuestra propia granja y controlamos todo el proceso. La faena se
+                        realiza en un establecimiento habilitado, con los controles sanitarios correspondientes.
+                    </div>
+                </details>
+
+                <!-- Accordion 2 (Ubicación) -->
+                <details
+                    class="group bg-white rounded-2xl border border-neutral-100 shadow-[0_0_15px_rgba(0,0,0,0.02)] fade-up transition-colors open:border-brand-orange/30 cursor-pointer"
+                    style="transition-delay:80ms;">
+                    <summary
+                        class="flex justify-between items-center font-heading font-bold text-xl p-7 text-neutral-900 focus:outline-none select-none list-none [&::-webkit-details-marker]:hidden">
+                        ¿Dónde puedo comprar carne de cerdo en Río Grande?
+                        <span class="text-brand-orange transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="px-7 pb-7 text-neutral-600 leading-relaxed -mt-2">
+                        Podés visitarnos en cualquiera de nuestras dos sucursales en Río Grande: Carlos Pellegrini 312 o
+                        El Alambrador 50.
+                    </div>
+                </details>
+
+                <!-- Accordion 3 -->
+                <details
+                    class="group bg-white rounded-2xl border border-neutral-100 shadow-[0_0_15px_rgba(0,0,0,0.02)] fade-up transition-colors open:border-brand-orange/30 cursor-pointer"
+                    style="transition-delay:160ms;">
+                    <summary
+                        class="flex justify-between items-center font-heading font-bold text-xl p-7 text-neutral-900 focus:outline-none select-none list-none [&::-webkit-details-marker]:hidden">
+                        ¿Cómo garantizan la frescura?
+                        <span class="text-brand-orange transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="px-7 pb-7 text-neutral-600 leading-relaxed -mt-2">
+                        Trabajamos bajo estricta normativa municipal. Nuestra carne es fresca y del día, mantenida bajo
+                        una cadena de frío constante y sin envasar, para que te lleves siempre la mejor calidad.
+                    </div>
+                </details>
+
+                <!-- Accordion 4 -->
+                <details
+                    class="group bg-white rounded-2xl border border-neutral-100 shadow-[0_0_15px_rgba(0,0,0,0.02)] fade-up transition-colors open:border-brand-orange/30 cursor-pointer"
+                    style="transition-delay:240ms;">
+                    <summary
+                        class="flex justify-between items-center font-heading font-bold text-xl p-7 text-neutral-900 focus:outline-none select-none list-none [&::-webkit-details-marker]:hidden">
+                        ¿Abastecen a restaurantes y hoteles?
+                        <span class="text-brand-orange transition-transform duration-300 group-open:rotate-180">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="px-7 pb-7 text-neutral-600 leading-relaxed -mt-2">
+                        Sí, además de nuestras sucursales en Río Grande, abastecemos a restaurantes y hoteles de
+                        Ushuaia, garantizando cortes frescos y calidad constante.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA Final -->
+    <section class="relative py-28 text-white text-center overflow-hidden">
+        <!-- Foto de fondo: costillas sobre tabla (diferente del hero) -->
+        <div class="absolute inset-0 z-0">
+            <img src="02_costillas_tabla.jpg" alt="Costillas de cerdo premium — Granja Porcina"
+                class="w-full h-full object-cover" style="object-position: center 35%;" loading="lazy">
+            <div class="absolute inset-0 bg-brand-red/80"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 fade-up">
+            <p class="text-brand-orange font-bold uppercase tracking-widest text-sm mb-4">Te esperamos</p>
+            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">Visitá nuestras sucursales<br>en Río Grande
+            </h2>
+            <p class="text-lg mb-10 text-white/80 max-w-xl mx-auto">Cortes frescos del día y excelente atención.
+                Descubrí el verdadero sabor de la producción local.</p>
+            <a href="#sucursales"
+                class="inline-flex items-center justify-center gap-2 bg-white text-brand-red px-10 py-4 rounded-full font-bold text-lg hover:bg-neutral-100 hover:-translate-y-1 transition-all duration-300 shadow-lg">
+                Ver ubicaciones y horarios
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Oscuro -->
+    <footer class="bg-neutral-900 text-neutral-300 pt-16 pb-8 border-t-[6px] border-brand-red">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Columna 1 -->
+                <div>
+                    <img src="logo-nuevo.jpeg" alt="Logo Granja Porcina" class="h-16 mb-6 rounded bg-white p-1">
+                    <p class="mb-4 text-neutral-400 text-base leading-relaxed">Especialistas en carne de cerdo fresca.
+                        Producción 100% propia,
+                        garantizando estricta higiene, cadena de frío y el mejor sabor local.</p>
+                </div>
+
+                <!-- Columna 2 -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-xl mb-6">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 font-medium text-neutral-400">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors">Inicio</a></li>
+                        <li><a href="#productos" class="hover:text-brand-orange transition-colors">Cortes y Catálogo</a>
+                        </li>
+                        <li><a href="#historia" class="hover:text-brand-orange transition-colors">Nuestra Historia</a>
+                        </li>
+                        <li><a href="#sucursales" class="hover:text-brand-orange transition-colors">Ubicación y
+                                Horarios</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3 -->
+                <div>
+                    <h4 class="text-white font-heading font-bold text-xl mb-6">Ubicación</h4>
+                    <ul class="space-y-4 font-medium text-neutral-400">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-orange mt-1" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Sucursal Pellegrini 312<br>Sucursal El Alambrador 50<br>Río Grande, TDF</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div
+                class="border-t border-neutral-800 pt-8 text-center text-base text-neutral-500 flex flex-col md:flex-row justify-between items-center font-medium">
+                <p>&copy; 2026 Granja Porcina. Todos los derechos reservados.</p>
+                <p class="mt-2 md:mt-0">Producción Propia &middot; Río Grande, Tierra del Fuego</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Línea SEO oculta para indexación local -->
+    <p class="sr-only">Venta de carne de cerdo fresca en Río Grande, Tierra del Fuego. Granja Porcina, producción
+        propia, máxima higiene y control sanitario, cadena de frío estricta, venta a mostrador y restaurantes.</p>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button id="close-lightbox" class="absolute top-6 right-6 text-white hover:text-brand-orange transition-colors">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Intersección Observer para las animaciones ---
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+        // --- Lógica del Lightbox de la Galería ---
+        const galleryItems = document.querySelectorAll(".gallery-cell img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeLightbox = document.getElementById("close-lightbox");
+
+        galleryItems.forEach(img => {
+            img.parentElement.onclick = () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = "flex";
+                setTimeout(() => lightbox.classList.add("active"), 10);
+            };
+        });
+
+        const hideLightbox = () => {
+            lightbox.classList.remove("active");
+            setTimeout(() => { lightbox.style.display = "none"; }, 300);
+        };
+
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox || e.target === closeLightbox || closeLightbox.contains(e.target)) {
+                hideLightbox();
+            }
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && lightbox.style.display === "flex") {
+                hideLightbox();
+            }
+        });
+
+        // --- Navbar Scroll Effect ---
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add("nav-scrolled");
+                navbar.classList.remove("bg-white/80", "py-4");
+                navbar.classList.add("py-2");
+            } else {
+                navbar.classList.remove("nav-scrolled", "py-2");
+                navbar.classList.add("bg-white/80", "py-4");
+            }
+        });
+
+        // --- Menú Móvil ---
+        const mobileBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        mobileBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("opacity-0");
+            mobileMenu.classList.toggle("-translate-y-2");
+            mobileMenu.classList.toggle("pointer-events-none");
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("opacity-0", "-translate-y-2", "pointer-events-none");
+            });
+        });
+    </script>
+</body>
+
+</html>
