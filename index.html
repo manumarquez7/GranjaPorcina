@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 
@@ -175,8 +176,10 @@
             transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .product-card:hover .product-card-img {
-            transform: scale(1.04);
+        @media (hover: hover) {
+            .product-card:hover .product-card-img {
+                transform: scale(1.04);
+            }
         }
 
         /* Galería hover */
@@ -184,17 +187,19 @@
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .gallery-cell:hover img {
-            transform: scale(1.04);
-        }
-
         .gallery-cell .gallery-overlay {
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .gallery-cell:hover .gallery-overlay {
-            opacity: 1;
+        @media (hover: hover) {
+            .gallery-cell:hover img {
+                transform: scale(1.04);
+            }
+
+            .gallery-cell:hover .gallery-overlay {
+                opacity: 1;
+            }
         }
 
         /* Divider decorativo */
@@ -213,12 +218,13 @@
     <!-- Navegación -->
     <nav id="navbar"
         class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md shadow-sm border-b border-neutral-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div id="nav-container"
+            class="max-w-7xl mx-auto px-5 md:px-6 py-2.5 md:py-4 flex justify-between items-center transition-all duration-300">
 
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <img src="logo-nuevo.jpeg" alt="Logo Granja Porcina"
-                    class="h-14 w-auto object-contain rounded transition-transform group-hover:scale-105">
+                    class="h-[2.6rem] md:h-14 w-auto object-contain rounded transition-transform group-hover:scale-105">
             </a>
 
             <!-- Enlaces de Escritorio -->
@@ -263,7 +269,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-end pb-14 md:pb-20 pt-20 overflow-hidden">
+    <section class="relative min-h-[85vh] md:min-h-screen flex items-end pb-12 md:pb-20 pt-28 md:pt-20 overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="01_parrilla.jpg"
                 alt="Parrilla con costillas, chorizos y productos de cerdo frescos — Granja Porcina Río Grande"
@@ -294,14 +300,14 @@
 
                 <div class="flex flex-wrap gap-3">
                     <a href="#productos"
-                        class="bg-brand-orange text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-orange-700 transition-colors duration-200 shadow-lg inline-flex items-center gap-2">
+                        class="bg-brand-orange text-white px-7 py-3.5 rounded-full font-bold text-sm md:hover:bg-orange-700 active:bg-orange-700 transition-colors duration-200 shadow-lg inline-flex items-center gap-2">
                         Ver cortes disponibles
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
                         </svg>
                     </a>
                     <a href="#sucursales"
-                        class="bg-white/10 border border-white/30 text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white/20 transition-colors duration-200 backdrop-blur-sm inline-flex items-center gap-2">
+                        class="bg-white/10 border border-white/30 text-white px-7 py-3.5 rounded-full font-bold text-sm md:hover:bg-white/20 active:bg-white/20 transition-colors duration-200 backdrop-blur-sm inline-flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -349,7 +355,7 @@
     </section>
 
     <!-- Cortes Destacados — con fotos reales -->
-    <section id="productos" class="py-16 md:py-20 bg-white">
+    <section id="productos" class="py-12 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-5 md:px-8">
 
             <div class="mb-14 fade-up">
@@ -357,7 +363,8 @@
                 <h2 class="text-4xl md:text-5xl font-heading font-bold text-neutral-900">Cortes que hablan<br>por sí
                     solos.</h2>
                 <div class="section-divider"></div>
-                <p class="text-neutral-500 text-lg md:text-xl max-w-xl leading-relaxed">Seleccionamos los mejores cortes del día y los presentamos frescos en mostrador. Sin envasar, sin intermediarios.</p>
+                <p class="text-neutral-500 text-lg md:text-xl max-w-xl leading-relaxed">Seleccionamos los mejores cortes
+                    del día y los presentamos frescos en mostrador. Sin envasar, sin intermediarios.</p>
             </div>
 
             <!-- Grid de productos con foto real -->
@@ -369,12 +376,18 @@
                             class="product-card-img w-full h-full object-cover" style="object-position: center 25%;"
                             loading="lazy">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
-                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Parrilla</span>
-                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Costillar</h3>
-                        <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Jugoso, con hueso. Ideal para parrilla.</p>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                        <span
+                            class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Parrilla</span>
+                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Costillar
+                        </h3>
+                        <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Jugoso, con hueso. Ideal para parrilla.
+                        </p>
                     </div>
-                    <div class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300"></div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl md:group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
                 </div>
 
                 <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
@@ -384,12 +397,17 @@
                             alt="Chorizos artesanales a la parrilla — elaboración propia Granja Porcina"
                             class="product-card-img w-full h-full object-cover object-center" loading="lazy">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
-                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Elaboración propia</span>
-                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Chorizos</h3>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Elaboración
+                            propia</span>
+                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Chorizos
+                        </h3>
                         <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Artesanales, con receta propia.</p>
                     </div>
-                    <div class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300"></div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl md:group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
                 </div>
 
                 <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
@@ -400,12 +418,18 @@
                             class="product-card-img w-full h-full object-cover" style="object-position: center 30%;"
                             loading="lazy">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
-                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Corte premium</span>
-                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Bondiola & Lomo</h3>
-                        <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Tiernos, del campo directo al mostrador.</p>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Corte
+                            premium</span>
+                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Bondiola &
+                            Lomo</h3>
+                        <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Tiernos, del campo directo al
+                            mostrador.</p>
                     </div>
-                    <div class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300"></div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl md:group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
                 </div>
 
                 <div class="product-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer fade-up"
@@ -414,12 +438,17 @@
                         <img src="07_plato.jpg" alt="Plato con cortes de cerdo — productos Granja Porcina"
                             class="product-card-img w-full h-full object-cover object-center" loading="lazy">
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
-                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Platos preparados</span>
-                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Platos & Elaborados</h3>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/82 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-6">
+                        <span class="text-white/60 text-[11px] font-bold uppercase tracking-widest mb-1.5">Platos
+                            preparados</span>
+                        <h3 class="text-white font-heading font-bold text-2xl md:text-[1.7rem] leading-tight">Platos &
+                            Elaborados</h3>
                         <p class="text-white/75 text-[15px] mt-1.5 leading-snug">Milanesas, ribs, picada y más.</p>
                     </div>
-                    <div class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl group-hover:border-brand-orange/50 transition-colors duration-300"></div>
+                    <div
+                        class="absolute inset-0 border-2 border-brand-orange/0 rounded-2xl md:group-hover:border-brand-orange/50 transition-colors duration-300">
+                    </div>
                 </div>
 
             </div>
@@ -427,7 +456,7 @@
     </section>
 
     <!-- Catálogo completo de cortes -->
-    <section id="lista-precios" class="py-16 md:py-20 bg-neutral-50 border-t border-neutral-100">
+    <section id="lista-precios" class="py-12 md:py-20 bg-neutral-50 border-t border-neutral-100">
         <div class="max-w-7xl mx-auto px-5 md:px-8">
             <div class="mb-10 fade-up">
                 <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-2">Catálogo completo</p>
@@ -485,7 +514,7 @@
     <section id="historia" class="bg-neutral-950 overflow-hidden">
 
         <!-- Bloque texto + foto elaboración -->
-        <div class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+        <div class="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-28">
             <div class="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
 
                 <div class="fade-up order-2 lg:order-1">
@@ -543,9 +572,9 @@
         </div>
 
         <!-- Sección: Producimos lo que vendemos y Pilares -->
-        <div class="bg-neutral-900 py-16 md:py-20 border-y border-neutral-800">
+        <div class="bg-neutral-900 py-12 md:py-20 border-y border-neutral-800">
             <div class="max-w-7xl mx-auto px-5 md:px-8">
-                
+
                 <!-- Encabezado -->
                 <div class="max-w-2xl mb-12 md:mb-16 fade-up">
                     <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Del campo al
@@ -566,17 +595,21 @@
                         <h4 class="text-white font-semibold text-base mb-1.5">Cadena de frío</h4>
                         <p class="text-neutral-400 text-[15px] leading-relaxed">Venta fresca sin envasado</p>
                     </div>
-                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6" style="transition-delay:80ms">
+                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6"
+                        style="transition-delay:80ms">
                         <div class="text-brand-orange text-2xl mb-4">🧼</div>
                         <h4 class="text-white font-semibold text-base mb-1.5">Higiene total</h4>
                         <p class="text-neutral-400 text-[15px] leading-relaxed">Protocolos y normativa municipal</p>
                     </div>
-                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6" style="transition-delay:160ms">
+                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6"
+                        style="transition-delay:160ms">
                         <div class="text-brand-orange text-2xl mb-4">🏥</div>
                         <h4 class="text-white font-semibold text-base mb-1.5">Control sanitario</h4>
-                        <p class="text-neutral-400 text-[15px] leading-relaxed">Seguimiento y controles sanitarios durante el proceso.</p>
+                        <p class="text-neutral-400 text-[15px] leading-relaxed">Seguimiento y controles sanitarios
+                            durante el proceso.</p>
                     </div>
-                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6" style="transition-delay:240ms">
+                    <div class="fade-up bg-white/5 border border-white/8 rounded-xl p-5 md:p-6"
+                        style="transition-delay:240ms">
                         <div class="text-brand-orange text-2xl mb-4">🏭</div>
                         <h4 class="text-white font-semibold text-base mb-1.5">Faena habilitada</h4>
                         <p class="text-neutral-400 text-[15px] leading-relaxed">Faena en establecimiento habilitado</p>
@@ -592,7 +625,7 @@
 
 
     <!-- Galería editorial -->
-    <section id="galeria" class="py-16 md:py-24 bg-white">
+    <section id="galeria" class="py-12 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-5 md:px-8">
             <div class="mb-12 fade-up">
                 <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Calidad visible</p>
@@ -654,7 +687,7 @@
 
 
     <!-- Sucursales -->
-    <section id="sucursales" class="py-16 md:py-24 bg-neutral-50 border-t border-neutral-100">
+    <section id="sucursales" class="py-12 md:py-24 bg-neutral-50 border-t border-neutral-100">
         <div class="max-w-7xl mx-auto px-5 md:px-8">
 
             <div class="mb-14 fade-up">
@@ -671,11 +704,11 @@
 
                 <!-- Sucursal 1: Pellegrini 312 -->
                 <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up hover:shadow-md transition-shadow duration-300">
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up md:hover:shadow-md transition-shadow duration-300">
                     <div class="relative h-60 overflow-hidden">
                         <img src="09_local_pellegrini_312.jpg"
                             alt="Sucursal Granja Porcina en Carlos Pellegrini 312, Río Grande, Tierra del Fuego"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            class="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-700 ease-out"
                             style="object-position: center center;" loading="lazy">
                         <div
                             class="absolute top-4 left-4 bg-brand-orange text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
@@ -716,12 +749,12 @@
                 </div>
 
                 <!-- Sucursal 2: El Alambrador 50 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up hover:shadow-md transition-shadow duration-300"
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200 group fade-up md:hover:shadow-md transition-shadow duration-300"
                     style="transition-delay:150ms">
                     <div class="relative h-60 overflow-hidden">
                         <img src="10_local_alambrador_50.jpg"
                             alt="Sucursal Granja Porcina en El Alambrador 50, Río Grande, Tierra del Fuego"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            class="w-full h-full object-cover md:group-hover:scale-105 transition-transform duration-700 ease-out"
                             style="object-position: center center;" loading="lazy">
                         <div
                             class="absolute top-4 left-4 bg-brand-red text-white text-xs font-bold px-3 py-1.5 rounded-full shadow">
@@ -771,7 +804,7 @@
 
 
     <!-- FAQ -->
-    <section id="faq" class="py-16 md:py-20 bg-white border-t border-neutral-100">
+    <section id="faq" class="py-12 md:py-20 bg-white border-t border-neutral-100">
         <div class="max-w-3xl mx-auto px-6">
             <div class="mb-10 fade-up">
                 <p class="text-brand-orange text-xs font-bold uppercase tracking-widest mb-3">Preguntas frecuentes</p>
@@ -864,7 +897,7 @@
 
 
     <!-- CTA Final -->
-    <section class="relative py-24 md:py-32 text-white text-center overflow-hidden">
+    <section class="relative py-16 md:py-32 text-white text-center overflow-hidden">
         <!-- Foto de fondo: costillas sobre tabla (diferente del hero) -->
         <div class="absolute inset-0 z-0">
             <img src="02_costillas_tabla.jpg" alt="Costillas de cerdo premium — Granja Porcina"
@@ -1002,14 +1035,18 @@
 
         // --- Navbar Scroll Effect ---
         const navbar = document.getElementById("navbar");
+        const navContainer = document.getElementById("nav-container");
         window.addEventListener("scroll", () => {
             if (window.scrollY > 20) {
                 navbar.classList.add("nav-scrolled");
-                navbar.classList.remove("bg-white/80", "py-4");
-                navbar.classList.add("py-2");
+                navbar.classList.remove("bg-white/80");
+                navContainer.classList.remove("py-2.5", "md:py-4");
+                navContainer.classList.add("py-2");
             } else {
-                navbar.classList.remove("nav-scrolled", "py-2");
-                navbar.classList.add("bg-white/80", "py-4");
+                navbar.classList.remove("nav-scrolled");
+                navbar.classList.add("bg-white/80");
+                navContainer.classList.remove("py-2");
+                navContainer.classList.add("py-2.5", "md:py-4");
             }
         });
 
